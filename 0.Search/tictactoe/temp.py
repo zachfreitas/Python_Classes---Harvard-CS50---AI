@@ -1,5 +1,5 @@
 # Initialize the board
-board = [[' ' for _ in range(3)] for _ in range(3)]
+board = [[Empty for _ in range(3)] for _ in range(3)]
 
 # Initialize the players
 player1 = 'X'
