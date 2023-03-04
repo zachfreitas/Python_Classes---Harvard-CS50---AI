@@ -1,4 +1,4 @@
-# Python_Classes---Harvard-CS50---AI
+# Harvard-CS50: AI Python Class
 
 Introduction classes to AI Programming Using Python.
 
