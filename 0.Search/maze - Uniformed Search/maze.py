@@ -148,6 +148,7 @@ class Maze():
             if node.state == self.goal:
                 actions = []
                 cells = []
+                # Follow parent notes to find solution
                 while node.parent is not None:
                     actions.append(node.action)
                     cells.append(node.state)
