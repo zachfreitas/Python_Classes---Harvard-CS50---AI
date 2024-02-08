@@ -6,6 +6,8 @@ class Node():
 
 
 class StackFrontier():
+    # Uninformed Search Strategy
+    # Depth-First Search
     def __init__(self):
         self.frontier = []
 
@@ -28,7 +30,8 @@ class StackFrontier():
 
 
 class QueueFrontier(StackFrontier):
-
+    # Uninformed Search Strategy
+    # Breadth-First Search
     def remove(self):
         if self.empty():
             raise Exception("empty frontier")

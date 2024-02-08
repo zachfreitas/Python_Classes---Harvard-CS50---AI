@@ -95,7 +95,8 @@ def shortest_path(source, target):
     num_explored = 0
 
     start = Node(state=source, parent=None, action=None)
-    frontier = QueueFrontier()
+    # frontier = StackFrontier() # Depth-First Search (DFS)
+    frontier = QueueFrontier() # Breadth-First Search (BFS)
     frontier.add(start)
 
     # Set of explored actors
