@@ -11,4 +11,8 @@ knowledge = And(
     dumbledore
 )
 
+
+"""
+Did Harry meet with Hagrid?
+"""
 print(model_check(knowledge, rain))
