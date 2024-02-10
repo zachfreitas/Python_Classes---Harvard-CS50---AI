@@ -12,24 +12,29 @@ CKnave = Symbol("C is a Knave")
 # Puzzle 0
 # A says "I am both a knight and a knave."
 knowledge0 = And(
+    # Base Structure of Game.
     Not(And(AKnight, AKnave)),  # cannot be knight and knave at the same time
     Or(AKnight, AKnave),        # Has to be either a Knight or a Knave
-    Implication(AKnight, And(AKnight, AKnave)),
-    Implication(AKnave, Not(And(AKnight, AKnave)))
+    
+    # Character Statements
+    # A says "I am both a knight and a knave."
+    Implication(AKnight, And(AKnight, AKnave)), # If True
+    Implication(AKnave, Not(And(AKnight, AKnave))) # If False
 )
 
 # Puzzle 1
 # A says "We are both knaves."
 # B says nothing.
 knowledge1 = And(
+    # Base Structure of Game.
     Not(And(AKnight, AKnave)),  # cannot be knight and knave at the same time
     Or(AKnight, AKnave),        # Has to be either a Knight or a Knave
 
     Not(And(BKnight, BKnave)),  # cannot be knight and knave at the same time
     Or(BKnight, BKnave),        # Has to be either a Knight or a Knave
 
-    # Or(And(AKnight, BKnave), And(AKnave, BKnight)), # A and B can't be the same figure
-
+    # Character Statements
+    # A says "We are both knaves."
     Implication(AKnight, And(AKnave, BKnave)),
     Implication(AKnave, Not(And(AKnave, BKnave)))
 )
@@ -38,19 +43,22 @@ knowledge1 = And(
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
+    # Base Structure of Game.
     Not(And(AKnight, AKnave)),  # cannot be knight and knave at the same time
     Or(AKnight, AKnave),        # will be Knight or Knave
 
     Not(And(BKnight, BKnave)),  # cannot be knight and knave at the same time
     Or(BKnight, BKnave),        # will be Knight or Knave
 
-    # Or(And(AKnight, BKnave), And(AKnave, BKnight)), # A and B can't be the same figure
-
-    Implication(AKnight, And(AKnight, BKnight)),
-    Implication(AKnave, Not(And(AKnave, BKnave))),
-
-    Implication(BKnight, And(BKnight, AKnave)),
-    Implication(BKnave, Not(And(BKnave, AKnight)))
+    # Character Statements
+    # A says "We are the same kind."  
+    Implication(AKnight, And(AKnight, BKnight)), # If True
+    Implication(AKnave, Not(And(AKnave, BKnave))), # If False
+    
+    # Character Statements
+    # B says "We are of different kinds."
+    Implication(BKnight, And(BKnight, AKnave)), # If True
+    Implication(BKnave, Not(And(BKnave, AKnight))) # If False
 )
 
 # Puzzle 3
@@ -59,6 +67,7 @@ knowledge2 = And(
 # B says "C is a knave."
 # C says "A is a knight."
 knowledge3 = And(
+    # Base Structure of Game.
     Not(And(AKnight, AKnave)),  # A cannot be knight and knave at the same time
     Or(AKnight, AKnave),        # A will be Knight or Knave
 
@@ -67,21 +76,22 @@ knowledge3 = And(
 
     Not(And(CKnight, CKnave)),  # C cannot be knight and knave at the same time
     Or(CKnight, CKnave),        # C will be Knight or Knave
-
+    
+    # Character Statements
     # A says either "I am a knight." or "I am a knave.", but you don't know which.
     Or(
         # "I am a knight."
         And(
             Implication(AKnight, AKnight),
             Implication(AKnave, Not(AKnight))
-        ),
+        ), 
         
         # "I am a knave."
         And(
             Implication(AKnight, AKnave),
             Implication(AKnave, Not(AKnave))
         )
-    ),
+    ), # If True
 
     Not(And(
         # "I am a knight."
@@ -95,27 +105,29 @@ knowledge3 = And(
             Implication(AKnight, AKnave),
             Implication(AKnave, Not(AKnave))
         )
-    )),
-
+    )), # If False
+    
+    # Character Statements
     # B says "A said 'I am a knave'."
     Implication(BKnight, And(
         Implication(AKnight, AKnave),
         Implication(AKnave, Not(AKnave))
-    )),
+    )), # If True
 
     Implication(BKnave, Not(And(
         Implication(AKnight, AKnave),
         Implication(AKnave, Not(AKnave))
-    ))),
-
-
+    ))), # If False
+    
+    # Character Statements
     # B says "C is a knave."
-    Implication(BKnight, CKnave),
-    Implication(BKnave, Not(CKnave)),
-
+    Implication(BKnight, CKnave), # If True
+    Implication(BKnave, Not(CKnave)), # If False
+    
+    # Character Statements
     # C says "A is a knight."
-    Implication(CKnight, AKnight),
-    Implication(CKnave, Not(AKnight))
+    Implication(CKnight, AKnight), # If True
+    Implication(CKnave, Not(AKnight)) # If False
 )
 
 
